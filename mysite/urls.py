@@ -14,13 +14,34 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from django.conf import settings
 from django.views.static import serve
 from delivery.views import *
 
 urlpatterns = [
-    path('', index, name = 'index'),
+    path('', index, name='index'),
+    path('est/', est_list, name='est'),
+    path('est/<int:establishment_id>/',establishment_detail , name='establishment_detail'),
+    path('est/delete/<int:pk>/', delete_est, name='est_delete'),
+    path('couriers/', couriers, name='couriers'),
+    path('orders/<int:order_id>/route/', show_route_map, name='show_route_map'),
+    path('orders/', order, name='orders'),
+    path('orders/<int:order_id>/delete/', delete_order, name='delete_order'),
+    path('schedule/', schedule, name='schedule'),
+    path('schedule/<int:establishment_id>/', view_schedule, name='view_schedule'),
+    path('order/<int:order_id>/', order_detail, name='order_detail'),
+    path('setsalary/', salary_calculator, name='setsalary'),
+    path('inprogress/', in_progress_orders, name='inprogress'),
+
+    path('dashboard/', dashboard, name='dashboard'),
+    path('accept_order/<int:order_id>/', accept_order, name='accept_order'),
+    path('myorders/', myorders, name='myorders'),
+    path('mysalary/', mysalary, name='mysalary'),
+    path('myestablishments', courier_establishments, name='myest'),
+    path('myschedule/', courier_schedule, name='myschedule'),
+
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 ]
 

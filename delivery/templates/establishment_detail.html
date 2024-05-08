@@ -1,0 +1,46 @@
+{% extends 'menu_temp.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+<h2>{{ establishment.name }}</h2>
+    <div class="row">
+    <div class="col md-6">
+    <p>Адрес: {{ establishment.adress }}</p>
+    <p>Телефон: {{ establishment.phone }}</p>
+    <p>БИН: {{ establishment.bin }}</p>
+    <p>График работы: {{ establishment.work_schedule}}</p>
+    </div>
+    <div class="col md-6">
+    {% if establishment.photo %}
+    <img src="{{ establishment.photo.url }}" alt="{{ establishment.name }} Image" class="img-fluid rounded w-25">
+    {% endif %}
+    </div>
+    </div>
+<hr>
+<br>
+    <div class="row">
+    <div class="col md-6">
+    <h3>Добавить курьера в заведение</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ courier_form.as_p }}
+            <button class="btn btn-primary" type="submit">Добавить</button>
+        </form>
+    </div>
+    <div class="col md-6">
+    <h3>Курьеры заведения</h3>
+    <br>
+    <ul class="list-group">
+        {% for courier in couriers %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ courier.courier.fullname }}
+            <!-- Номер телефона курьера в виде badge -->
+            <span class="badge bg-primary rounded-pill">{{ courier.courier.work_phone }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+</div>
+</div>
+{% endblock %}

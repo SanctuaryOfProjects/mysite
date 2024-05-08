@@ -1,0 +1,19 @@
+{% extends 'menu_temp.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+<h1>Детальная информация о заказе</h1>
+<p>Отправитель: {{ orders.sender.name }}</p>
+<p>Получатель: {{ orders.recipient }}</p>
+<p>Статус: {{ orders.status }}</p>
+<p>Точка отправления: {{ orders.origin }}</p>
+<p>Точка назначения: {{ orders.destination }}</p>
+<p>Дата и время заказа: {{ orders.date }}</p>
+<p>Комментарий: {{ orders.comment }}</p>
+
+<a class="btn btn-success mx-2" href="{% url 'show_route_map' orders.id %}">Показать маршрут</a>
+<a class="btn btn-danger mx-2" href="{% url 'delete_order' orders.id %}">Удалить</a>
+</div>
+{% endblock %}

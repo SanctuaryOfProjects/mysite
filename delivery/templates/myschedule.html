@@ -1,0 +1,40 @@
+{% extends 'courier_menu.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2>График работы курьера</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-primary mt-3">Показать график</button>
+    </form>
+
+    {% if courier_schedule %}
+    <div class="mt-5">
+        <h3>Рабочие смены</h3>
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Начало смены</th>
+                    <th>Конец смены</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for schedule in courier_schedule %}
+                <tr>
+                    <td>{{ schedule.date }}</td>
+                    <td>{{ schedule.start_time }}</td>
+                    <td>{{ schedule.end_time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

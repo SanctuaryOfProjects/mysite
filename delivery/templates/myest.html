@@ -1,0 +1,33 @@
+{% extends 'courier_menu.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h3 class="mb-4">Мои заведения</h3>
+    <br>
+    <div class="row">
+        {% for establishment in establishments %}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="row no-gutters">
+                    <div class="col-md-5">
+                        <img src="{{ establishment.photo.url }}" class="card-img" alt="{{ establishment.name }}">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ establishment.name }}</h5>
+                            <p class="card-text">{{ establishment.adress }}</p>
+                            <p class="card-text">Телефон: {{ establishment.phone }}</p>
+                            <p class="card-text">График работы: {{ establishment.work_schedule }}</p>
+                            <p class="card-text">БИН: {{ establishment.bin }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

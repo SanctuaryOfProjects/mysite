@@ -1,0 +1,44 @@
+{% extends 'menu_temp.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1>Заказы в процессе выполнения</h1>
+    <form method="get">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Применить фильтр</button>
+    </form>
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Дата и время заказа</th>
+                <th>Отправитель</th>
+                <th>Получатель</th>
+                <th>Статус</th>
+                <th>Принят курьером</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.date }}</td>
+                <td>{{ order.sender }}</td>
+                <td>{{ order.recipient }}</td>
+                <td>{{ order.status }}</td>
+                <td>
+                    {% if order.courier %}
+                        {{ order.courier.fullname }}
+                    {% else %}
+                        Не назначен
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

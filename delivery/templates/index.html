@@ -1,11 +1,82 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Главная страница</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .service-card {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #343a40;
+            padding: 20px 0;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    hello world
+    <div class="jumbotron jumbotron-fluid bg-dark text-white">
+        <div class="container">
+            <br>
+            <br>
+            <h1 class="display-4">Автоматизация доставки заказов</h1>
+            <br>
+            <p class="lead">Программа доставки позволяет вам управлять заказами, отслеживать их статус, а также оптимизировать маршруты доставки.</p>
+            <br>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="service-card">
+                    <h3><i class="bi bi-bag-check"></i> Управление заказами</h3>
+                    <p>Простое управление заказами и отслеживание их статуса в реальном времени.</p>
+                </div>
+                <div class="service-card">
+                    <h3><i class="bi bi-geo-alt"></i> Оптимизация маршрутов</h3>
+                    <p>Автоматическое построение оптимальных маршрутов доставки для экономии времени и ресурсов.</p>
+                </div>
+                <div class="service-card">
+                    <h3><i class="bi bi-cash-stack"></i> Увеличение прибыли</h3>
+                    <p>Эффективное управление доставкой поможет повысить эффективность вашего бизнеса.</p>
+                </div>
+                <div class="service-card">
+                    <h3><i class="bi bi-bicycle"></i> Управление курьерами</h3>
+                    <p>Интеграция точек доставки с менеджерами и курьерами. </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                            <p><a href="{% url 'est' %}" class="btn btn-primary btn-lg">Перейти на страницу управления</a></p>
+                        {% else %}
+                            <p><a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg">Перейти на страницу управления</a></p>
+                        {% endif %}
+        
+                    <p><a href="{% url 'logout' %}" class="btn btn-light btn-lg">Выйти</a></p>
+                {% else %}
+                    <p><a href="{% url 'login' %}" class="btn btn-light btn-lg">Войти в систему</a></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 Ваша компания. Все права защищены.</p>
+    </footer>
 </body>
 </html>

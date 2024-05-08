@@ -1,0 +1,42 @@
+{% extends 'courier_menu.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h3>Моя зарплата</h3>
+    
+    <!-- Форма для ввода зарплаты за час работы -->
+    <form method="post" class="mb-3">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+    
+    <!-- Таблица с информацией о зарплате -->
+    {% if salary_list %}
+        <h2>Информация о зарплате</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Рабочие часы</th>
+                    <th>Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in salary_list %}
+                <tr>
+                    <td>{{ data.date }}</td>
+                    <td>{{ data.working_hours }}</td>
+                    <td>{{ data.salary }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>У вас пока нет данных о зарплате.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

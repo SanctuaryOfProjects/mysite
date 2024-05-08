@@ -1,0 +1,36 @@
+{% extends 'menu_temp.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1>Калькулятор зарплаты</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Рассчитать</button>
+    </form>
+    <br>
+    {% if salary_list %}
+    <h2>Информация о зарплате</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Рабочие часы</th>
+                <th>Сумма</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for date, working_hours, salary in salary_list %}
+            <tr>
+                <td>{{ date }}</td>
+                <td>{{ working_hours }}</td>
+                <td>{{ salary }} ₸ </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

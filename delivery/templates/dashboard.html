@@ -1,0 +1,38 @@
+{% extends 'courier_menu.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h3>Список заказов</h3>
+    <br>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+    {% for order in orders %}
+    <div class="col mb-4">
+        <div class="card">
+            <div class="row no-gutters">
+                <!-- Фото заведения -->
+                <div class="col-md-4">
+                    <img src="{{ order.sender.photo.url }}" class="card-img" alt="{{ order.sender.name }}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Заказ №{{ order.id }}</h5>
+                        <!-- Информация о заказе -->
+                        <p class="card-text">{{ order.sender.name }} - {{ order.date }}</p>
+                        <!-- Кнопка принятия заказа -->
+                        <form action="{% url 'accept_order' order.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Принять заказ</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+</div>
+{% endblock %}
