@@ -25,9 +25,9 @@ SECRET_KEY = 'django-insecure-4i*r5c_!xc(=2z*hzio8y9)#lcw^l92t+#vb**2$wq!h-xxa9&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'newtry-production-c9e2.up.railway.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'mysite-production-0bc8.up.railway.app']
 
-CSRF_TRUSTED_ORIGINS = ["https://newtry-production-c9e2.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["mysite-production-0bc8.up.railway.app"]
 
 # Application definition
 
