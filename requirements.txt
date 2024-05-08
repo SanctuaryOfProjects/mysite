@@ -10,6 +10,7 @@ contourpy==1.2.1
 cycler==0.12.1
 Django==4.0.4
 fiona==1.9.6
+folium==0.16.0
 fonttools==4.51.0
 geographiclib==2.0
 geopandas==0.14.4
