@@ -4,6 +4,7 @@ from datetime import datetime
 from geopy.geocoders import ArcGIS
 import osmnx as ox
 import networkx as nx
+import folium
 
 class Establishment(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название")
