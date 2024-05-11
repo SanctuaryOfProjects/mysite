@@ -50,11 +50,7 @@
                     <p class="card-text">{{ establishment.adress }}</p>
                     <!-- Номер телефона -->
                     <p class="card-text">Телефон: <span class="badge bg-primary">{{ establishment.phone }}</span></p>
-                    <!-- Кнопки "Изменить" и "Удалить" -->
-                    <form method="post" action="{% url 'est_delete' establishment.id %}" class="d-inline">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
-                    </form>
+                    <p class="card-text">График: <span class="badge bg-primary">{{ establishment.work_schedule }}</span></p>
                 </div>
             </div>
         </div>
