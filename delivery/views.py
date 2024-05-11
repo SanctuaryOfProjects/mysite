@@ -142,7 +142,7 @@ def schedule_edit(request, pk):
         form = ScheduleForm(request.POST, request.FILES, instance=schedule)
         if form.is_valid():
             schedule = form.save()
-            return redirect('view_schedule')
+            return redirect('schedule')
     else:
         form = ScheduleForm(instance=schedule)
     return render(request, 'schedule_edit.html', {'form': form})
@@ -150,7 +150,7 @@ def schedule_edit(request, pk):
 def delete_schedule(request, pk):
     schedule = get_object_or_404(Schedule, pk=pk)
     schedule.delete()
-    return redirect('view_schedule')
+    return redirect('schedule')
 
 def order(request):
     orders = Order.objects.all()
