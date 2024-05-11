@@ -2,11 +2,13 @@
 {% load static %}
 
 {% block content %}
-<h3> Редактировать </h3>
+<div class="container mt-5">
+<h3> Редактировать</h3>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Save changes</button>
+    <button class="btn btn-primary" type="submit">Сохранить</button>
 </form>
+</div>
 
 {% endblock %}
