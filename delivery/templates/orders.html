@@ -25,7 +25,6 @@
                     <p>Б: {{ order.destination }}</p>
                     <span class="card-text">Дата и время: {{ order.date }}</span>
                     <a href="{% url 'show_route_map' order.id %}" class="btn btn-success mx-2">Маршрут</a>
-                    <a href="#" class="btn btn-warning">Изменить</a>
                     <a href="{% url 'delete_order' order.id %}" class="btn btn-danger mx-2">Удалить</a>
                   </div>
                 </div>

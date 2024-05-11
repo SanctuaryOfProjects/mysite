@@ -69,6 +69,10 @@ def couriers(request):
     context = {'form': form, 'courier_list': courier_list}
     return render(request, 'couriers.html', context)
 
+def delete_courier(request, pk):
+    cours = get_object_or_404(Courier, pk=pk)
+    cours.delete()
+    return redirect('couriers')
 
 def show_route_map(request, order_id):
     order = get_object_or_404(Order, id=order_id)
