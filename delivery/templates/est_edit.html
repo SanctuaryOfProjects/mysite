@@ -1,0 +1,12 @@
+{% extends 'menu_temp.html' %}
+{% load static %}
+
+{% block content %}
+<h3> Редактировать </h3>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save changes</button>
+</form>
+
+{% endblock %}

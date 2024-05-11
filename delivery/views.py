@@ -27,6 +27,17 @@ def est_list(request):
     }
     return render(request, 'est.html', context)
 
+def establishment_edit(request, pk):
+    establishment = get_object_or_404(Establishment, pk=pk)
+    if request.method == "POST":
+        form = EstablishmentForm(request.POST, request.FILES, instance=establishment)
+        if form.is_valid():
+            establishment = form.save()
+            return redirect('est')
+    else:
+        form = EstablishmentForm(instance=establishment)
+    return render(request, 'est_edit.html', {'form': form})
+
 def delete_est(request, pk):
     estabs = get_object_or_404(Establishment, pk=pk)
     estabs.delete()

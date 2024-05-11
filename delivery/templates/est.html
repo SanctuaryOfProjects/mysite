@@ -37,7 +37,7 @@
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
                     </form>
-                    <a href="#" class="btn btn-warning btn-sm ms-2">Изменить</a>
+                    <a href="{% url 'establishment_edit' establishment.id %}" class="btn btn-warning btn-sm ms-2">Изменить</a>
                 </div>
             </div>
         </div>
