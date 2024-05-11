@@ -107,4 +107,11 @@ class EstablishmentChoiceForm(forms.Form):
         label='Выберите заведение',
         widget=forms.Select(attrs={'class': 'form-control'})
     )
-    
+
+class OrderStatusForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['status']
+        widgets = {
+            'status': forms.Select(attrs={'class': 'form-select'}),
+        }

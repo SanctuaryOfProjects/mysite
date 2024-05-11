@@ -42,6 +42,7 @@ urlpatterns = [
     path('dashboard/', dashboard, name='dashboard'),
     path('accept_order/<int:order_id>/', accept_order, name='accept_order'),
     path('myorders/', myorders, name='myorders'),
+    path('myorders/<int:pk>/update_status/', update_order_status, name='update_order_status'),
     path('mysalary/', mysalary, name='mysalary'),
     path('myestablishments', courier_establishments, name='myest'),
     path('myschedule/', courier_schedule, name='myschedule'),

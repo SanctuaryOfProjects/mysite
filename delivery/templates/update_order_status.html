@@ -1,0 +1,15 @@
+{% extends 'courier_menu.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h3 class="mb-4">Обновить статус</h3>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Обновить</button>
+    </form>
+
+{% endblock %}

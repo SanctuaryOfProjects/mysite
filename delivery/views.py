@@ -210,6 +210,17 @@ def myorders(request):
     courier_orders = Order.objects.filter(courier=request.user.courier)
     return render(request, 'myorders.html', {'courier_orders': courier_orders})
 
+def update_order_status(request, pk):
+    order = get_object_or_404(Order, pk=pk)
+    if request.method == 'POST':
+        form = OrderStatusForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+            return redirect('myorders')
+    else:
+        form = OrderStatusForm(instance=order)
+    return render(request, 'update_order_status.html', {'form': form, 'order': order})
+
 def in_progress_orders(request):
     orders = Order.objects.all()
     form = OrderStatusFilterForm(request.GET)
