@@ -26,6 +26,7 @@ urlpatterns = [
     path('est/<int:pk>/edit/', establishment_edit, name='establishment_edit'),
     path('est/delete/<int:pk>/', delete_est, name='est_delete'),
     path('couriers/', couriers, name='couriers'),
+    path('couriers/<int:pk>/edit/', couriers_edit, name='couriers_edit'),
     path('couriers/delete/<int:pk>/', delete_courier, name='cours_delete'),
     path('orders/<int:order_id>/route/', show_route_map, name='show_route_map'),
     path('orders/', order, name='orders'),

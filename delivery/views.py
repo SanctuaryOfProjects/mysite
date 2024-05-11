@@ -80,6 +80,17 @@ def couriers(request):
     context = {'form': form, 'courier_list': courier_list}
     return render(request, 'couriers.html', context)
 
+def couriers_edit(request, pk):
+    couriers = get_object_or_404(Courier, pk=pk)
+    if request.method == "POST":
+        form = CourierForm(request.POST, request.FILES, instance=couriers)
+        if form.is_valid():
+            couriers = form.save()
+            return redirect('couriers')
+    else:
+        form = CourierForm(instance=couriers)
+    return render(request, 'couriers_edit.html', {'form': form})
+
 def delete_courier(request, pk):
     cours = get_object_or_404(Courier, pk=pk)
     cours.delete()

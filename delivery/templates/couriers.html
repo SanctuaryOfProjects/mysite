@@ -22,7 +22,7 @@
                         <span class="badge bg-primary rounded-pill">{{ courier.work_phone }}</span>
                     </div>
                     <p class="mb-1">Email: {{ courier.email }}</p>
-                    <a href="#" class="btn btn-warning">Изменить</a>
+                    <a href="{% url 'couriers_edit' courier.id %}" class="btn btn-warning btn-sm">Изменить</a>
                     <form method="post" action="{% url 'cours_delete' courier.id %}" class="d-inline">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
