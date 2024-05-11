@@ -22,8 +22,12 @@
                 <td>{{ entry.start_time }}</td>
                 <td>{{ entry.end_time }}</td>
                 <td>{{ entry.courier }}</td>
-                <td><a class="btn btn-warning">Изменить</a></td>
-                <td><a class="btn btn-danger">Удалить</a></td>
+                <td><form method="post" action="{% url 'schedule_delete' entry.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Удалить</button></td>
+                </form>
+                <td><a href="{% url 'schedule_edit' entry.id %}" class="btn btn-warning btn-sm ms-2">Изменить</a></td>
+
             </tr>
             {% empty %}
                 <tr>

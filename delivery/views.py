@@ -136,6 +136,21 @@ def view_schedule(request, establishment_id):
     schedule = Schedule.objects.filter(est=establishment)
     return render(request, 'view_schedule.html', {'establishment': establishment, 'schedule': schedule})
 
+def schedule_edit(request, pk):
+    schedule = get_object_or_404(Schedule, pk=pk)
+    if request.method == "POST":
+        form = ScheduleForm(request.POST, request.FILES, instance=schedule)
+        if form.is_valid():
+            schedule = form.save()
+            return redirect('view_schedule')
+    else:
+        form = ScheduleForm(instance=schedule)
+    return render(request, 'schedule_edit.html', {'form': form})
+
+def delete_schedule(request, pk):
+    schedule = get_object_or_404(Schedule, pk=pk)
+    schedule.delete()
+    return redirect('view_schedule')
 
 def order(request):
     orders = Order.objects.all()
